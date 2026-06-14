@@ -1,0 +1,7 @@
+Interactive Problems
+3112 - Hidden Integer
+3139 - Hidden Permutation
+3305 - K-th Highest Score
+3228 - Permuted Binary Strings
+3273 - Colored Chairs
+3140 - Inversion Sorting

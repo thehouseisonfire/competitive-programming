@@ -1,0 +1,54 @@
+<li>Geometry<ul>
+        <li>Elementary operations<ul>
+                <li><a href="geometry/basic-geometry.html">Basic Geometry</a></li>
+                <li><a href="geometry/segment-to-line.html">Finding the equation of a line for a segment</a></li>
+                <li><a href="geometry/lines-intersection.html">Intersection Point of Lines</a></li>
+                <li><a href="geometry/check-segments-intersection.html">Check if two segments intersect</a></li>
+                <li><a href="geometry/segments-intersection.html">Intersection of Segments</a></li>
+                <li><a href="geometry/circle-line-intersection.html">Circle-Line Intersection</a></li>
+                <li><a href="geometry/circle-circle-intersection.html">Circle-Circle Intersection</a></li>
+                <li><a href="geometry/tangents-to-two-circles.html">Common tangents to two circles</a></li>
+                <li><a href="geometry/length-of-segments-union.html">Length of the union of segments</a></li>
+            </ul>
+        </li>
+        <li>Polygons<ul>
+                <li><a href="geometry/oriented-triangle-area.html">Oriented area of a triangle</a></li>
+                <li><a href="geometry/area-of-simple-polygon.html">Area of simple polygon</a></li>
+                <li><a href="geometry/point-in-convex-polygon.html">Check if points belong to the convex polygon in
+                        O(log N)</a>
+                </li>
+                <li><a href="geometry/minkowski.html">Minkowski sum of convex polygons</a></li>
+                <li><a href="geometry/picks-theorem.html">Pick's Theorem - area of lattice polygons</a></li>
+                <li><a href="geometry/lattice-points.html">Lattice points of non-lattice polygon</a></li>
+            </ul>
+        </li>
+        <li>Convex hull<ul>
+                <li><a href="geometry/convex-hull.html">Convex hull construction</a></li>
+                <li><a href="geometry/convex_hull_trick.html">Convex hull trick and Li Chao tree</a></li>
+            </ul>
+        </li>
+        <li>Sweep-line<ul>
+                <li><a href="geometry/intersecting_segments.html">Search for a pair of intersecting segments</a></li>
+            </ul>
+        </li>
+        <li>Planar graphs<ul>
+                <li><a href="geometry/planar.html">Finding faces of a planar graph</a></li>
+                <li><a href="geometry/point-location.html">Point location in O(log N)</a></li>
+            </ul>
+        </li>
+        <li>Miscellaneous<ul>
+                <li><a href="geometry/nearest_points.html">Finding the nearest pair of points</a></li>
+                <li><a href="geometry/delaunay.html">Delaunay triangulation and Voronoi diagram</a></li>
+                <li><a href="geometry/vertical_decomposition.html">Vertical decomposition</a></li>
+                <li><a href="geometry/halfplane-intersection.html">Half-plane intersection - S&amp;I Algorithm in O(N
+                        log N)</a>
+                </li>
+                <li><a href="geometry/halfplane-intersection-maybe-fixed.html">Half-plane intersection - S&amp;I
+                        Algorithm in
+                        O(N log N) (Fixed Maybe)</a></li>
+                <li><a href="geometry/manhattan-distance.html">Manhattan Distance</a></li>
+                <li><a href="geometry/enclosing-circle.html">Minimum Enclosing Circle</a></li>
+            </ul>
+        </li>
+    </ul>
+</li>

@@ -1,0 +1,31 @@
+Additional I
+1087 - Shortest Subsequence
+3150 - Distinct Values Sum
+3190 - Distinct Values Splits
+1670 - Swap Game
+3175 - Beautiful Permutation II
+2422 - Multiplication Table
+3151 - Bubble Sort Rounds I
+3152 - Bubble Sort Rounds II
+3306 - Nearest Campsites I
+3307 - Nearest Campsites II
+1142 - Advertisement
+2186 - Special Substrings
+3169 - Counting LCM Arrays
+3193 - Square Subsets
+3294 - Subarray Sum Constraints
+3213 - Water Containers Moves
+3214 - Water Containers Queries
+2425 - Stack Weights
+3301 - Maximum Average Subarrays
+3302 - Subsets with Fixed Average
+3361 - Two Array Average
+1747 - Pyramid Array
+3404 - Permutation Subsequence
+1188 - Bit Inversions
+1086 - Writing Numbers
+2427 - Letter Pair Move Game
+1147 - Maximum Building I
+1162 - Sorting Methods
+1191 - Cyclic Array
+2414 - List of Sums

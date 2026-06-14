@@ -1,0 +1,3 @@
+./Binary Search.pdf
+./Ternary Search.pdf
+./Simulated Annealing.pdf

@@ -1,0 +1,5 @@
+./Algebra.pdf
+./Dynamic Programming.pdf
+./Graphs.pdf
+./Geometry.pdf
+./Numerical Methods.pdf

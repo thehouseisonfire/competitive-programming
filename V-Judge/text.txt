@@ -1,0 +1,96 @@
+Given the pbolem description below, and a example implementation of a different problem so you may understand my coding style, implement the solution to the problem. 
+
+1. Make sure to include my templates in the solution.
+2. Don't use comments.
+3. Use `const`, `auto`.
+4. don't use functions or lambdas unless very sensible.
+5. Prefer `ll` over `int` at all times.
+6. Use single letters or small names for vectors especially. 
+7. If a scope can be omitted due to having only one or two expression, do so.
+8. Prefer `if(i%2)` to `if(i%2 == 0)`
+9. Ternaries are good.
+10. Use bitwise ops instead of multiplications.
+
+Note: You may notice the problem is just a double prefix.
+
+```
+```
+
+```
+#include <iostream>
+#include <vector>
+
+#define u8 unsigned char
+#define hd short int
+#define hu short unsigned
+#define lu unsigned
+#define ll long long
+#define llu long long unsigned
+#define float double
+#define double long double
+#define pi pair<int, int>
+#define pll pair<ll, ll>
+
+#define INF 2147483647
+#define HINF INF >> 1
+#define MOD 1000000007
+#define ASCII_NUMBER_OFFSET '0'
+#define ASCII_UPPERCASE_OFFSET 'A'
+#define ASCII_LOWERCASE_OFFSET 'a'
+// #define ASCII_NUMBER_OFFSET 48
+// #define ASCII_UPPERCASE_OFFSET 65
+// #define ASCII_LOWERCASE_OFFSET 97
+
+#define DBG(x) cout << "[" << #x << "]: " << x << endl
+#define F(x) std::fixed << std::setprecision(1) << (x)
+#define PI(x) cout << x.first << " " << x.second << endl
+#define DUO(x, y) cout << x << " " << y << endl
+
+#define PRINT_VEC(v)                                                           \
+  for (const auto &pos : v) {                                                  \
+    cout << pos << " ";                                                        \
+  }                                                                            \
+  cout << endl;
+
+#define PRINT_DUO_VEC(v)                                                       \
+  for (const auto &pos : v) {                                                  \
+    cout << pos.first << " " << pos.second << endl;                            \
+  }                                                                            \
+  cout << endl;
+
+#define INPUT_VEC(v)                                                           \
+  for (auto &pos : v) {                                                        \
+    cin >> pos;                                                                \
+  }
+
+#define INPUT_DUO_VEC(v)                                                       \
+  for (auto &pos : v) {                                                        \
+    cin >> pos.first >> pos.second;                                            \
+  }
+
+using namespace std;
+
+int main(int argc, char *argv[]) {
+  ios_base::sync_with_stdio(false);
+  cin.tie(NULL);
+  cout.tie(NULL);
+  int n;
+  cin >> n;
+  vector<int> v(n);
+  INPUT_VEC(v);
+  ll last = -1, count = 0, best = 0;
+  for (const auto &pos : v) {
+    if (pos <= last) {
+      best = max(best, count);
+      count = 1;
+
+    } else
+      count++;
+    last = pos;
+  }
+  best = max(best, count);
+  cout << best << endl;
+
+  return 0;
+}
+```

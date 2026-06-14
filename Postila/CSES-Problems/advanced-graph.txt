@@ -1,0 +1,29 @@
+Advanced Graph Problems
+3303 - Nearest Shops
+1134 - Prüfer Code
+1702 - Tree Traversals
+1757 - Course Schedule II
+1756 - Acyclic Graph Edges
+2177 - Strongly Connected Edges
+2179 - Even Outdegree Edges
+1707 - Graph Girth
+3357 - Fixed Length Walk Queries
+3111 - Transfer Speeds Sum
+3407 - MST Edge Check
+3408 - MST Edge Set Check
+3409 - MST Edge Cost
+1677 - Network Breakdown
+3114 - Tree Coin Collecting I
+3149 - Tree Coin Collecting II
+1700 - Tree Isomorphism I
+1701 - Tree Isomorphism II
+1699 - Flight Route Requests
+1703 - Critical Cities
+1203 - Visiting Cities
+3308 - Graph Coloring
+3158 - Bus Companies
+3358 - Split into Two Paths
+1704 - Network Renovation
+1705 - Forbidden Cities
+1752 - Creating Offices
+1685 - New Flight Routes

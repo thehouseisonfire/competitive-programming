@@ -1,0 +1,38 @@
+Math
+2164 - Josephus Queries
+1095 - Exponentiation
+1712 - Exponentiation II
+1713 - Counting Divisors
+1081 - Common Divisors
+1082 - Sum of Divisors
+2182 - Divisor Analysis
+2185 - Prime Multiples
+2417 - Counting Coprime Pairs
+3396 - Next Prime
+1079 - Binomial Coefficients
+1715 - Creating Strings II
+1716 - Distributing Apples
+1717 - Christmas Party
+3397 - Permutation Order
+3398 - Permutation Rounds
+2064 - Bracket Sequences I
+2187 - Bracket Sequences II
+2209 - Counting Necklaces
+2210 - Counting Grids
+1722 - Fibonacci Numbers
+1096 - Throwing Dice
+1723 - Graph Paths I
+1724 - Graph Paths II
+3154 - System of Linear Equations
+3355 - Sum of Four Squares
+3406 - Triangle Number Sums
+1725 - Dice Probability
+1726 - Moving Robots
+1727 - Candy Lottery
+1728 - Inversion Probability
+1729 - Stick Game
+1730 - Nim Game I
+1098 - Nim Game II
+1099 - Stair Game
+2207 - Grundy's Game
+2208 - Another Game

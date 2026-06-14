@@ -1,0 +1,17 @@
+Geometry
+2189 - Point Location Test
+2190 - Line Segment Intersection
+2191 - Polygon Area
+2192 - Point in Polygon
+2193 - Polygon Lattice Points
+2194 - Minimum Euclidean Distance
+2195 - Convex Hull
+3410 - Maximum Manhattan Distances
+3411 - All Manhattan Distances
+1740 - Intersection Points
+3427 - Line Segments Trace I
+3428 - Line Segments Trace II
+3429 - Lines and Queries I
+3430 - Lines and Queries II
+1741 - Area of Rectangles
+1742 - Robot Path

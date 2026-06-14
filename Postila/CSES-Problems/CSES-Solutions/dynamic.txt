@@ -1,0 +1,24 @@
+Dinamic Programming
+1633 - Dice Combinations
+1634 - Minimizing Coins
+1635 - Coin Combinations I
+1636 - Coin Combinations II
+1637 - Removing Digits
+1638 - Grid Paths I
+1158 - Book Shop
+1746 - Array Description
+2413 - Counting Towers
+1639 - Edit Distance
+3403 - Longest Common Subsequence
+1744 - Rectangle Cutting
+3359 - Minimal Grid Path
+1745 - Money Sums
+1097 - Removal Game
+1093 - Two Sets II
+3314 - Mountain Range
+1145 - Increasing Subsequence
+1140 - Projects
+1653 - Elevator Rides
+2181 - Counting Tilings
+2220 - Counting Numbers
+1748 - Increasing Subsequence II

@@ -1,0 +1,12 @@
+Sliding Window Problems
+3220 - Sliding Window Sum
+3221 - Sliding Window Minimum
+3426 - Sliding Window Xor
+3405 - Sliding Window Or
+3222 - Sliding Window Distinct Values
+3224 - Sliding Window Mode
+3219 - Sliding Window Mex
+1076 - Sliding Window Median
+1077 - Sliding Window Cost
+3223 - Sliding Window Inversions
+3227 - Sliding Window Advertisement

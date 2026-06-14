@@ -1,0 +1,26 @@
+Range Queries
+1646 - Static Range Sum Queries
+1647 - Static Range Minimum Queries
+1648 - Dynamic Range Sum Queries
+1649 - Dynamic Range Minimum Queries
+1650 - Range Xor Queries
+1651 - Range Update Queries
+1652 - Forest Queries
+1143 - Hotel Queries
+1749 - List Removals
+1144 - Salary Queries
+2166 - Prefix Sum Queries
+2206 - Pizzeria Queries
+3304 - Visible Buildings Queries
+3163 - Range Interval Queries
+1190 - Subarray Sum Queries
+3226 - Subarray Sum Queries II
+1734 - Distinct Values Queries
+3356 - Distinct Values Queries II
+2416 - Increasing Array Queries
+1664 - Movie Festival Queries
+1739 - Forest Queries II
+1735 - Range Updates and Sums
+1736 - Polynomial Queries
+1737 - Range Queries and Copies
+2184 - Missing Coin Sum Queries
