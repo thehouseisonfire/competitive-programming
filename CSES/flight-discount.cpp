@@ -40,11 +40,9 @@ template <typename T> ostream &operator<<(ostream &os, const vector<T> &v) {
 int solution(int num, const vi &choices, const vi &results);
 
 void solve() {
-  ll n;
-  cin >> n;
+  ll n, m;
+  cin >> n >> m;
   vll v(n);
-  cin >> v;
-  cout << v << endl;
 }
 
 int main() {

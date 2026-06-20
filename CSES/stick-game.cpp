@@ -40,11 +40,30 @@ template <typename T> ostream &operator<<(ostream &os, const vector<T> &v) {
 int solution(int num, const vi &choices, const vi &results);
 
 void solve() {
-  ll n;
-  cin >> n;
-  vll v(n);
-  cin >> v;
-  cout << v << endl;
+  ll n, p;
+  cin >> n >> p;
+  vll w(p);
+  vector<bool> v(n + 1);
+  cin >> w;
+
+  for (const auto &p : w)
+    if (p > n)
+      v[p] = true;
+
+  for (ll i = 1; i <= n; i++) {
+    ll can_win = false;
+    for (const auto &p : w) {
+      if (p > i)
+        continue;
+      can_win |= !v[i - p];
+      // if (v[i - p] == false)
+      //   can_win = true;
+    }
+    v[i] = can_win;
+  }
+  for (ll i = 1; i <= n; i++)
+    cout << (v[i] ? "W" : "L");
+  cout << endl;
 }
 
 int main() {

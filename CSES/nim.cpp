@@ -44,7 +44,10 @@ void solve() {
   cin >> n;
   vll v(n);
   cin >> v;
-  cout << v << endl;
+  ll xor_sum = 0;
+  for (const auto &pos : v)
+    xor_sum ^= pos;
+  cout << (xor_sum ? "first" : "second") << endl;
 }
 
 int main() {
@@ -52,7 +55,7 @@ int main() {
   cin.tie(NULL);
 
   int t = 1;
-  // cin >> t;
+  cin >> t;
   while (t--) {
     solve();
   }
