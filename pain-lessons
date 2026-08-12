@@ -1,0 +1,15 @@
+
+19/06
+
+Pense programaticamente sobre grafos.
+Se não é soó para rodar um algoritmo:
+  - É para rodar de dois vértices como origem? Três? Mais?
+  - É para modificar o algoritmo?
+  - É para modificar o grafo?
+      - Remover ou adicionar aresta
+      - Remover ou adicionar vértice (e.g. bipartição)
+      - Ambos podem ser para completar uma lógica ou como auxílio.
+
+20/06:
+
+Lembre-se que a resposta é normalmente `v[n-1]`, não `v[n]`

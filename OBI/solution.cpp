@@ -1,5 +1,4 @@
 #include <cmath>
-#include <deque>
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -38,41 +37,14 @@ template <typename T> ostream &operator<<(ostream &os, const vector<T> &v) {
 #define dbg(x) cerr << #x << " = " << (x) << endl
 #define all(x) (x).begin(), (x).end()
 
-void solve() {
-  ll n, k;
-  cin >> n >> k;
-  vector<vector<pll>> v(n + k);
-  for (ll i = 0; i < k; i++) {
-    ll l;
-    cin >> l;
-    ll rep = n + i;
-    for (ll j = 0; j < l; j++) {
-      ll next;
-      cin >> next;
-      next--;
-      v[rep].push_back({next, 0});
-      v[next].push_back({rep, 1});
-    }
-  }
+int solution(int num, const vi &choices, const vi &results);
 
-  vector<ll> d(n + k, INF);
-  d[0] = 0;
-  deque<ll> q;
-  q.push_front(0);
-  while (!q.empty()) {
-    ll curr = q.front();
-    q.pop_front();
-    for (auto [u, w] : v[curr]) {
-      if (d[curr] + w < d[u]) {
-        d[u] = d[curr] + w;
-        if (w == 1)
-          q.push_back(u);
-        else
-          q.push_front(u);
-      }
-    }
-  }
-  cout << d[n - 1] << endl;
+void solve() {
+  ll n;
+  cin >> n;
+  vll v(n);
+  cin >> v;
+  cout << v << endl;
 }
 
 int main() {

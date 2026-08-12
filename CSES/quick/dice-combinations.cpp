@@ -1,6 +1,5 @@
 #include <cmath>
 #include <iostream>
-#include <queue>
 #include <vector>
 using namespace std;
 
@@ -38,61 +37,35 @@ template <typename T> ostream &operator<<(ostream &os, const vector<T> &v) {
 #define dbg(x) cerr << #x << " = " << (x) << endl
 #define all(x) (x).begin(), (x).end()
 
-vector<vector<pll>> adj;
-vector<vector<pll>> backwards_adj;
-
-vector<ll> ds, df;
-vector<ll> ps, pf;
-
-void dijkstra(ll s, vector<vector<pll>> adj, vector<ll> &d, vector<ll> &p) {
-  priority_queue<pll, vector<pll>, greater<pll>> pq;
-
-  d[s] = 0;
-  pq.push({0, s});
-
-  while (!pq.empty()) {
-    auto [p, v] = pq.top();
-    pq.pop();
-
-    if (p != d[v])
-      continue;
-
-    for (const auto [to, w] : adj[v]) {
-      if (d[v] + w < d[to]) {
-        d[to] = d[v] + w;
-        pq.push({d[to], to});
-      }
-    }
-  }
-}
+int solution(int num, const vi &choices, const vi &results);
 
 void solve() {
-  ll n, m;
-  cin >> n >> m;
-  adj.assign(n, {});
-  backwards_adj.assign(n, {});
+  ll n;
+  cin >> n;
+  n--;
+  vector<ll> v(6);
+  v[0] = 1;
+  v[1] = 2;
+  v[2] = 4;
+  v[3] = 8;
+  v[4] = 16;
+  v[5] = 32;
 
-  ds.assign(n, INF);
-  df.assign(n, INF);
-  ps.assign(n, -1);
-  pf.assign(n, -1);
-  vector<tuple<ll, ll, ll>> edges;
-  for (ll i = 0; i < m; i++) {
-    ll a, b, c;
-    cin >> a >> b >> c;
-    a--, b--;
-    adj[a].push_back({b, c});
-    backwards_adj[b].push_back({a, c});
-    edges.push_back({a, b, c});
+  if (n <= 5) {
+    cout << v[n] << endl;
+    return;
   }
-  dijkstra(0, adj, ds, ps);
-  dijkstra(n - 1, backwards_adj, df, pf);
 
-  ll best = INF;
-  for (auto [u, v, c] : edges) {
-    best = min(best, ds[u] + c / 2 + df[v]);
+  ll curr = 5;
+  while (curr != n) {
+    curr++;
+    v[curr % 6] = (v[curr % 6] % MOD + v[(curr - 1) % 6] % MOD +
+                   v[(curr - 2) % 6] % MOD + v[(curr - 3) % 6] % MOD +
+                   v[(curr - 4) % 6] % MOD + v[(curr - 5) % 6] % MOD) %
+                  MOD;
+    // dbg(curr % 6);
   }
-  cout << best << endl;
+  cout << v[n % 6] % MOD << endl;
 }
 
 int main() {

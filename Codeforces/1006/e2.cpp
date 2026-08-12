@@ -1,6 +1,6 @@
 #include <cmath>
 #include <iostream>
-#include <queue>
+#include <map>
 #include <vector>
 using namespace std;
 
@@ -38,61 +38,60 @@ template <typename T> ostream &operator<<(ostream &os, const vector<T> &v) {
 #define dbg(x) cerr << #x << " = " << (x) << endl
 #define all(x) (x).begin(), (x).end()
 
-vector<vector<pll>> adj;
-vector<vector<pll>> backwards_adj;
+ll timee = 0;
 
-vector<ll> ds, df;
-vector<ll> ps, pf;
+vector<vll> adj;
+vector<ll> tin;
+vector<ll> pos;
+vector<bool> visited;
+vector<int> sub;
 
-void dijkstra(ll s, vector<vector<pll>> adj, vector<ll> &d, vector<ll> &p) {
-  priority_queue<pll, vector<pll>, greater<pll>> pq;
+void dfs(ll curr) {
 
-  d[s] = 0;
-  pq.push({0, s});
+  pos[curr] = timee;
+  tin[timee] = curr;
+  timee++;
 
-  while (!pq.empty()) {
-    auto [p, v] = pq.top();
-    pq.pop();
-
-    if (p != d[v])
+  visited[curr] = true;
+  sub[curr] = 1;
+  for (const auto filho : adj[curr]) {
+    if (visited[filho])
       continue;
-
-    for (const auto [to, w] : adj[v]) {
-      if (d[v] + w < d[to]) {
-        d[to] = d[v] + w;
-        pq.push({d[to], to});
-      }
-    }
+    dfs(filho);
+    sub[curr] += sub[filho];
   }
 }
 
 void solve() {
-  ll n, m;
-  cin >> n >> m;
-  adj.assign(n, {});
-  backwards_adj.assign(n, {});
+  ll n, q;
+  cin >> n >> q;
 
-  ds.assign(n, INF);
-  df.assign(n, INF);
-  ps.assign(n, -1);
-  pf.assign(n, -1);
-  vector<tuple<ll, ll, ll>> edges;
-  for (ll i = 0; i < m; i++) {
-    ll a, b, c;
-    cin >> a >> b >> c;
-    a--, b--;
-    adj[a].push_back({b, c});
-    backwards_adj[b].push_back({a, c});
-    edges.push_back({a, b, c});
-  }
-  dijkstra(0, adj, ds, ps);
-  dijkstra(n - 1, backwards_adj, df, pf);
+  adj.resize(n);
+  tin.resize(n);
+  pos.resize(n);
+  visited.resize(n);
+  sub.resize(n);
 
-  ll best = INF;
-  for (auto [u, v, c] : edges) {
-    best = min(best, ds[u] + c / 2 + df[v]);
+  for (ll i = 1, x; i < n; i++) {
+    cin >> x;
+    x--;
+    adj[x].push_back(i);
   }
-  cout << best << endl;
+
+  dfs(0);
+
+  while (q--) {
+    int a, b;
+    cin >> a >> b;
+    a--;
+    b--;
+
+    if (sub[a] - 1 < b) {
+      cout << -1 << endl;
+      continue;
+    }
+    cout << tin[pos[a] + b] + 1 << endl;
+  }
 }
 
 int main() {
