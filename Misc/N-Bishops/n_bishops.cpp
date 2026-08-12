@@ -50,7 +50,6 @@ long bishop_placements(int n, int k) {
   return ans;
 }
 
-// Driver code
 int main() {
   int n = 2;
   int k = 2;
