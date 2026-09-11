@@ -1,6 +1,6 @@
-#include <algorithm>
 #include <cmath>
 #include <iostream>
+#include <numeric>
 #include <vector>
 
 using namespace std;
@@ -53,38 +53,55 @@ using namespace std;
     cin >> pos.first >> pos.second;                                            \
   }
 
-llu fibonacci(llu n) {
+ll fibonacci(ll n) {
   return (pow(1 + sqrt(5), n) - pow(1 - sqrt(5), n)) / (pow(2, n) * sqrt(5));
 }
 
 int main() {
   int n, m;
-  cin >> n >> m;
-  llu o = __gcd(n, m);
-  vector<llu> v;
+
+  vector<ll> v;
   v.push_back(0);
   v.push_back(1);
-  llu i = 2, a = 0, b = 1;
-  while (i <= o) {
-    llu c = a + b;
-    v.push_back(c);
-    a = b;
-    b = c;
-    i++;
-  }
-  PRINT_VEC(v);
-  llu gcd = v[o];
-  cout << v[o];
-  while (i <= gcd) {
-    llu c = a + b;
-    v.push_back(c);
-    a = b;
-    b = c;
-    i++;
-  }
 
-  if (i == 2)
-    i = 1;
-  // cout << (o == c ? i : -1) << endl;
+  cin >> n >> m;
+  ll o = gcd(n, m);
+
+  ll i = 1, a = 0, b = 1, c = 1;
+  for (; i < o; i++) {
+    c = a + b;
+    a = b;
+    b = c;
+    v.push_back(c);
+  }
+  // PRINT_VEC(v);
+  // DUO(v.size(), o);
+  ll target = v[o];
+
+  for (; c < target; i++) {
+    c = a + b;
+    a = b;
+    b = c;
+    v.push_back(c);
+  }
+  ll j = -1;
+  i = 0;
+  for (; i < v.size(); i++) {
+    if (v[i] == target) {
+      j = i;
+      break;
+    } else if (v[i] > target)
+      break;
+  }
+  // DUO(v[i], target);
+  cout << j << endl;
+  // auto itr = find(v.begin(), v.end(), target);
+  // cout << (itr == v.end() ? -1 : *itr) << endl;
+
+  // ll target = fibonacci(__gcd(n, m));
+  // DUO(target, c);
+  // if (i == 2)
+  //   i = 1;
+  // cout << (target == c ? i : -1) << endl;
   return 0;
 }

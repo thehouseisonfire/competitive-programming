@@ -1,5 +1,0 @@
-binary-exp.html
-euclid-algorithm.html
-extended-euclid-algorithm.html
-linear-diophantine-equation.html
-fibonacci-numbers.html

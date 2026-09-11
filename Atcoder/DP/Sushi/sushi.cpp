@@ -52,8 +52,8 @@ void solve() {
     count[x]++;
   }
 
-  vector<vector<vector<ld>>> dp(
-      n + 2, vector<vector<ld>>(n + 2, vector<ld>(n + 2, 0.0)));
+  vector<vector<vector<ld>>> dp(n + 2,
+                                vector<vector<ld>>(n + 2, vector<ld>(n + 2)));
 
   for (ll k = 0; k <= n; k++) {
     for (ll j = 0; j <= n; j++) {

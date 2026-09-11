@@ -42,25 +42,12 @@ int solution(int num, const vi &choices, const vi &results);
 void solve() {
   ll n;
   cin >> n;
-  ll threes = n / 3;
-  ll rem = n % 3;
-  if (!rem) {
-    cout << 0 << endl;
-    return;
-  }
-  ll twos = rem == 1 ? 2 : 1;
-  ll odd_three = threes % 2;
-  ll odd_twos = twos % 2;
-  ll res = 0;
-  if (!odd_three && !odd_twos)
-    res = 0;
-  if (!odd_three && odd_twos)
-    res = 2;
-  if (odd_three && !odd_twos)
-    res = 1;
-  if (odd_three && odd_twos)
-    res = 1;
-  cout << res << endl;
+  if (n == 2)
+    cout << 2 << endl;
+  else if (n == 3)
+    cout << 3 << endl;
+  else
+    cout << (n & 1) << endl;
 }
 
 int main() {

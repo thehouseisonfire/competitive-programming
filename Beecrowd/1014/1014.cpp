@@ -1,12 +1,14 @@
+#include <iomanip>
 #include <iostream>
 
-int solution();
+using namespace std;
 
 int main(int argc, char *argv[]) {
-  std::ios_base::sync_with_stdio(false);
-  std::cin.tie(NULL);
-  float n, m;
-  std::cin >> n >> m;
-  std::cout << (n / m);
+  ios_base::sync_with_stdio(false);
+  cin.tie(NULL);
+  double n, m;
+  cin >> n >> m;
+  cout << fixed << setprecision(3);
+  cout << n / m << " km/l" << endl;
   return 0;
 }

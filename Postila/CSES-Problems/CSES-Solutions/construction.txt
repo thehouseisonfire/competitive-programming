@@ -1,9 +1,0 @@
-Construction Problems
-2214 - Inverse Inversions
-2215 - Monotone Subsequences
-3422 - Third Permutation
-3423 - Permutation Prime Sums
-1697 - Chess Tournament
-3424 - Distinct Sums Grid
-2423 - Filling Trominos
-2418 - Grid Path Construction

@@ -1,5 +1,0 @@
-./Brute Force.pdf
-./Dynamic Programming Extras.pdf
-./Graphs Extra.pdf
-./Minimum-Cost-Perfect-Matching.pdf
-./Chinese Postman Problem.pdf

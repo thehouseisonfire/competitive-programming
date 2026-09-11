@@ -80,7 +80,8 @@ void update(int v, int tl, int tr, int pos, int new_val) {
 
 void solve() {
   int n;
-  cin >> n;
+  if (!(cin >> n))
+    return;
   vi v(n);
   cin >> v;
 

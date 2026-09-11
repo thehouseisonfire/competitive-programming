@@ -1,4 +1,5 @@
 #include <iostream>
+#include <map>
 #include <vector>
 
 #define u8 unsigned char
@@ -61,40 +62,16 @@ int main(int argc, char *argv[]) {
   for (ll i = 0; i < n; i++) {
     ll aux;
     cin >> aux;
-    v[i] = aux;
-    // sum += aux;
-    // v[i] = sum;
+    sum += aux;
+    v[i] = sum;
   }
-  // PRINT_VEC(v);
-
-  ll start = 0, end = 0, curr = v[0], res = 0;
-  while (start < n) {
-    if (curr == k) {
+  map<ll, int> ms;
+  ll res = 0;
+  for (ll i = 0; i < n; i++) {
+    if (v[i] == k)
       res++;
-      DUO(start, end);
-      if (end < n - 1) {
-        end++, curr += v[end];
-      } else {
-        curr -= v[start], start++;
-      }
-    } else if (curr < k) {
-      if (end < n - 1) {
-        end++, curr += v[end];
-      } else {
-        break;
-      }
-    } else if (curr > k) {
-      curr -= v[start], start++;
-      if (start > end) {
-        if (end < n - 1) {
-          end++, curr += v[end];
-        } else {
-          break;
-        }
-      }
-    }
-    // DUO(start, end);
-    // cout << curr << endl;
+    res += ms[v[i] - k];
+    ms[v[i]]++;
   }
   cout << res << endl;
 

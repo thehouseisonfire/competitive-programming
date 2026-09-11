@@ -76,6 +76,5 @@ int main(int argc, char *argv[]) {
 
     cout << (seen.size()) << '\n';
   }
-
   return 0;
 }

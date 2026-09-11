@@ -1,5 +1,4 @@
 #include <climits>
-#include <cmath>
 #include <iostream>
 
 #define u8 unsigned char
@@ -71,8 +70,6 @@ int main(int argc, char *argv[]) {
   cout.tie(NULL);
   ll n;
   cin >> n;
-  pll a = {1, 1};
-  const auto [first, second] = a;
   cout << binpow(n, 3) << endl;
 
   return 0;

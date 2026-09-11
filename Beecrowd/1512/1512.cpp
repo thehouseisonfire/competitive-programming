@@ -1,4 +1,5 @@
 #include <iostream>
+#include <numeric>
 #include <vector>
 
 #define u8 unsigned char
@@ -63,10 +64,14 @@ int main(int argc, char *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
   cout.tie(NULL);
-  ll n, a, b;
-  cin >> n >> a >> b;
-  const auto res = (n / a) + (n / b) - (n / (a * b));
-  cout << res << endl;
+  while (true) {
+    ll a, b, c;
+    cin >> a >> b >> c;
+
+    if (!a && !b && !c)
+      break;
+    cout << (a / b) + (a / c) - (a / lcm(b, c)) << endl;
+  }
 
   return 0;
 }

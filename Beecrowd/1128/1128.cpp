@@ -1,34 +1,32 @@
 #include <cstdio>
 #include <vector>
 #define MAX 2020
-#define PB push_back
 using namespace std;
-typedef vector<int> vi;
 int visitado[MAX], n, m;
-vi grafo[MAX], transposto[MAX];
+vector<int> grafo[MAX], transposto[MAX];
+
 int dfs1(int u) {
   visitado[u] = 1;
   int retornar = 1;
-  for (vi::iterator it = grafo[u].begin(); it != grafo[u].end(); it++) {
-    int v = *it;
+  for (int v : grafo[u]) {
     if (!visitado[v]) {
       retornar += dfs1(v);
     }
   }
   return retornar;
 }
+
 int dfs2(int u) {
   visitado[u] = 0;
   int retornar = 1;
-  for (vi::iterator it = transposto[u].begin(); it != transposto[u].end();
-       it++) {
-    int v = *it;
+  for (int v : transposto[u]) {
     if (visitado[v]) {
       retornar += dfs2(v);
     }
   }
   return retornar;
 }
+
 int main() {
   while (1) {
     scanf("%d %d", &n, &m);
@@ -43,13 +41,13 @@ int main() {
       int origem, destino, mao;
       scanf("%d %d %d", &origem, &destino, &mao);
       if (mao == 2) {
-        grafo[origem].PB(destino);
-        transposto[destino].PB(origem);
-        grafo[destino].PB(origem);
-        transposto[origem].PB(destino);
+        grafo[origem].push_back(destino);
+        transposto[destino].push_back(origem);
+        grafo[destino].push_back(origem);
+        transposto[origem].push_back(destino);
       } else {
-        grafo[origem].PB(destino);
-        transposto[destino].PB(origem);
+        grafo[origem].push_back(destino);
+        transposto[destino].push_back(origem);
       }
     }
     if (dfs1(1) != n) {

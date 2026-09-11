@@ -60,13 +60,13 @@ int main() {
   int n;
   while (cin >> n) {
     if (n < 0) {
-      cout << ("NO\n");
+      cout << "NO" << endl;
       continue;
     }
     if (vetor[n])
-      cout << ("YES\n");
+      cout << "YES" << endl;
     else
-      cout << ("NO\n");
+      cout << "NO" << endl;
   }
   return 0;
 }

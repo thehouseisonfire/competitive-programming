@@ -1,92 +1,128 @@
-#include <bits/stdc++.h>
+#include <array>
+#include <iostream>
+#include <queue>
+#include <set>
+
+#define u8 unsigned char
+#define hd short int
+#define hu short unsigned
+#define lu unsigned
+#define ll long long
+#define llu long long unsigned
+#define float double
+#define double long double
+#define pi pair<int, int>
+#define pll pair<ll, ll>
+
+#define INF 2147483647
+#define HINF INF >> 1
+#define MOD 1000000007
+#define ASCII_NUMBER_OFFSET '0'
+#define ASCII_UPPERCASE_OFFSET 'A'
+#define ASCII_LOWERCASE_OFFSET 'a'
+// #define ASCII_NUMBER_OFFSET 48
+// #define ASCII_UPPERCASE_OFFSET 65
+// #define ASCII_LOWERCASE_OFFSET 97
+
+#define DBG(x) cout << "[" << #x << "]: " << x << endl
+#define F(x) std::fixed << std::setprecision(1) << (x)
+#define PI(x) cout << x.first << " " << x.second << endl
+#define DUO(x, y) cout << x << " " << y << endl
+
+#define PRINT_VEC(v)                                                           \
+  for (const auto &pos : v) {                                                  \
+    cout << pos << " ";                                                        \
+  }                                                                            \
+  cout << endl;
+
+#define PRINT_DUO_VEC(v)                                                       \
+  for (const auto &pos : v) {                                                  \
+    cout << pos.first << " " << pos.second << endl;                            \
+  }                                                                            \
+  cout << endl;
+
+#define INPUT_VEC(v)                                                           \
+  for (auto &pos : v) {                                                        \
+    cin >> pos;                                                                \
+  }
+
+#define INPUT_DUO_VEC(v)                                                       \
+  for (auto &pos : v) {                                                        \
+    cin >> pos.first >> pos.second;                                            \
+  }
 
 using namespace std;
-int siz;
-struct no {
-  pair<int, int> n;
-  struct no *prox;
-};
-typedef struct {
-  struct no *inicio;
-  struct no *fim;
-} fila;
-void create(fila *q) {
-  siz = 0;
-  q->inicio = NULL;
-  q->fim = NULL;
-}
-void inserir(fila *q, pair<int, int> v) {
-  siz++;
-  struct no *aux;
-  aux = (struct no *)malloc(sizeof(struct no));
-  if (aux == NULL)
-    return;
-  aux->n = v;
-  aux->prox = NULL;
-  if (q->inicio == NULL)
-    q->inicio = aux;
-  if (q->fim != NULL)
-    q->fim->prox = aux;
-  q->fim = aux;
-}
-bool Empty(fila q) {
-  if (q.inicio == NULL && q.fim == NULL)
-    return true;
-  return false;
-}
-void remover(fila *q) {
-  siz--;
-  struct no *aux;
-  if (q->inicio == NULL)
-    return;
-  aux = q->inicio;
-  q->inicio = aux->prox;
-  if (q->inicio == NULL)
-    q->fim = NULL;
-  free(aux);
-}
-pair<int, int> frente(fila q) { return q.inicio->n; }
-int main() {
-  int n, n2, n3;
-  while (~scanf("%d%d%d", &n, &n2, &n3)) {
-    if (!n && !n2 && !n3)
-      break;
-    set<int> nop;
-    for (int i = 0; i < n3; i++) {
-      int x;
-      scanf("%d", &x);
-      nop.insert(x);
-    }
-    int vis[400000];
-    int ans = 0;
-    memset(vis, 0, sizeof vis);
-    fila q;
-    create(&q);
-    inserir(&q, make_pair(n, 0));
 
-    while (!Empty(q) && frente(q).first != n2) {
-      int u = frente(q).first;
-      int ul = frente(q).second;
-      remover(&q);
-      if (vis[u] == 1 || nop.count(u))
-        continue;
-      vis[u] = 1;
-      if (u > 0 && u <= 100000) {
-        inserir(&q, make_pair(u + 1, ul + 1));
-        if (u > 0)
-          inserir(&q, make_pair(u - 1, ul + 1));
-        if (u % 2 == 0)
-          inserir(&q, make_pair(u / 2, ul + 1));
-        if (u != 55000) {
-          inserir(&q, make_pair(u * 2, ul + 1));
-          inserir(&q, make_pair(u * 3, ul + 1));
-        }
-      }
+#define MAX 100000
+#define NO_MUL 55000
+
+ll flood(const set<ll> &s, ll n, ll m, ll o) {
+
+  queue<pll> q;
+  array<bool, 400000> visited{};
+
+  visited[n] = 1;
+  q.push({n, 0});
+
+  int res = -1;
+
+  while (!q.empty()) {
+    auto [curr, next] = q.front();
+    q.pop();
+
+    if (curr == m) {
+      res = next;
+      break;
     }
-    if (!Empty(q) && frente(q).first == n2)
-      printf("%d\n", frente(q).second);
-    else
-      printf("-1\n");
+
+    if (s.count(curr))
+      continue;
+
+    if (curr + 1 <= MAX && !visited[curr + 1]) {
+      q.push({curr + 1, next + 1});
+      visited[curr + 1] = 1;
+    }
+    if (curr - 1 > 0 && !visited[curr - 1]) {
+      q.push({curr - 1, next + 1});
+      visited[curr - 1] = 1;
+    }
+    if (!(curr % 2) && !visited[curr >> 1]) {
+      q.push({curr >> 1, next + 1});
+      visited[curr / 2] = 1;
+    }
+    if ((curr << 1) <= MAX && curr != NO_MUL && !visited[curr << 1]) {
+      q.push({curr << 1, next + 1});
+      visited[curr * 2] = 1;
+    }
+    if ((curr * 3) <= MAX && curr != NO_MUL && !visited[curr * 3]) {
+      q.push({curr * 3, next + 1});
+      visited[curr * 3] = 1;
+    }
   }
+  return res;
+}
+
+int main(int argc, char *argv[]) {
+  ios_base::sync_with_stdio(false);
+  cin.tie(NULL);
+  cout.tie(NULL);
+  ll n, m, o;
+
+  while (cin >> n >> m >> o) {
+    if (!n && !m && !o)
+      break;
+    set<ll> s;
+
+    while (o--) {
+      ll aux;
+      cin >> aux;
+      s.insert(aux);
+    }
+
+    ll res = flood(s, n, m, o);
+
+    cout << res << endl;
+  }
+
   return 0;
 }

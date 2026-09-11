@@ -1,7 +1,4 @@
-#include <cctype>
 #include <iostream>
-#include <map>
-#include <string>
 
 #define u8 unsigned char
 #define hd short int
@@ -55,21 +52,30 @@ using namespace std;
 
 int main(int argc, char *argv[]) {
   ios_base::sync_with_stdio(false);
+  cin.tie(NULL);
+  cout.tie(NULL);
   int n;
   cin >> n;
-  cin.ignore();
   while (n--) {
-    string s;
-    getline(cin, s);
-    map<char, int> mapa;
-    for (const auto &pos : s) {
-      if (islower(pos))
-        mapa[pos]++;
+    string s1, s2, res;
+    cin >> s1 >> s2 >> res;
+    // cout << s1 << " " << s2 << " " << res << endl;
+    ll i1 = -1, i2 = -1;
+    for (ll i = 0; i < res.size(); i++) {
+      // DUO(i1, i2);
+      if (res[i] == '_') {
+        if (i1 == -1)
+          i1 = i;
+        else {
+          i2 = i;
+          break;
+        }
+      }
     }
-    cout << (mapa.size() == 26  ? "frase completa"
-             : mapa.size() > 13 ? "frase quase completa"
-                                : "frase mal elaborada")
-         << endl;
+    // DUO(i1, i2);
+    // DUO(s1[i1], s2[i1]);
+    // DUO(s1[i2], s2[i2]);
+    cout << (s1[i1] == s2[i2] || s1[i2] == s2[i1] ? "Y" : "N") << endl;
   }
 
   return 0;
