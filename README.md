@@ -4,7 +4,7 @@
 
 **Programming marathon problems and solutions** — Beecrowd, Codeforces, Atcoder and friends.
 
-![Language](https://img.shields.io/badge/language-C%2B%2B-blue) 
+![Language](https://img.shields.io/badge/language-C%2B%2B-blue)
 ![License](https://img.shields.io/badge/license-MIT%20%7C%20Apache--2.0-brightgreen)
 
 </div>
@@ -53,7 +53,6 @@ The judges currently covered:
 |---|---|
 | `2026-regionals/` | Regional contest problems from 2026 |
 | `MOJ-Esquenta-2026/` | MOJ Esquenta 2026 contest problems |
-| `Templates/` | Template documentation and code snippets |
 
 ## Running the solutions
 
