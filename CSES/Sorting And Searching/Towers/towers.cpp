@@ -1,4 +1,5 @@
 #include <iostream>
+#include <map>
 #include <vector>
 
 #define u8 unsigned char
@@ -58,15 +59,23 @@ int main(int argc, char *argv[]) {
   int n;
   cin >> n;
   vector<int> v(n);
+  map<int, int> towers;
   INPUT_VEC(v);
-  // sort(v.rbegin(), v.rend());
-  // PRINT_VEC(v);
-  int prev = INF;
-  int count = 0;
-  for (int i = v.size() - 1; i >= 0; i--) {
-    count += prev <= v[i], prev = v[i];
+  ll count = 0;
+  for (const auto pos : v) {
+    const auto itr = towers.upper_bound(pos);
+    towers[pos]++;
+    if (itr == towers.end()) {
+      count++;
+      continue;
+    }
+    if (itr->second == 1)
+      towers.erase(itr->first);
+    else
+      towers[itr->first]--;
   }
-  cout << 1 + count << endl;
+
+  cout << count << endl;
 
   return 0;
 }

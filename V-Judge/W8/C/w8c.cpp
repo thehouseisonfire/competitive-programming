@@ -1,3 +1,5 @@
+// https://codeforces.com/gym/106077/C
+
 #include <iostream>
 #include <map>
 #include <vector>

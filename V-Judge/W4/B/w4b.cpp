@@ -1,3 +1,5 @@
+// https://codeforces.com/gym/106039/problem/H
+
 #include <iostream>
 
 #define u8 unsigned char

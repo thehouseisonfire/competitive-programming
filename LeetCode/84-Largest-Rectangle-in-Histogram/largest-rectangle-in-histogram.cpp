@@ -38,36 +38,21 @@ template <typename T> ostream &operator<<(ostream &os, const vector<T> &v) {
 #define dbg(x) cerr << #x << " = " << (x) << endl
 #define all(x) (x).begin(), (x).end()
 
-int solution(int num, const vi &choices, const vi &results);
-
-void solve() {
-  ll n;
-  cin >> n;
-  vll v(n);
-  cin >> v;
-  v.push_back(0);
-  ll ans = 0;
-  stack<ll> st;
-  for (ll i = 0; i < n + 1; i++) {
-    while (!st.empty() && v[i] <= v[st.top()]) {
-      const auto height = v[st.top()];
-      st.pop();
-      const ll left = st.empty() ? -1 : st.top();
-      ans = max(ans, (i - 1 - left) * height);
+class Solution {
+public:
+  int largestRectangleArea(vector<int> &v) {
+    v.push_back(0);
+    ll ans = 0;
+    stack<ll> st;
+    for (ll i = 0; i < v.size() + 1; i++) {
+      while (!st.empty() && v[i] <= v[st.top()]) {
+        const auto height = v[st.top()];
+        st.pop();
+        const ll left = st.empty() ? -1 : st.top();
+        ans = max(ans, (i - 1 - left) * height);
+      }
+      st.push(i);
     }
-    st.push(i);
+    return ans;
   }
-  cout << ans << endl;
-}
-
-int main() {
-  ios_base::sync_with_stdio(false);
-  cin.tie(NULL);
-
-  int t = 1;
-  // cin >> t;
-  while (t--) {
-    solve();
-  }
-  return 0;
-}
+};

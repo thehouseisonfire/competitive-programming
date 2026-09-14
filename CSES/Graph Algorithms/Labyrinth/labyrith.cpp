@@ -1,6 +1,6 @@
+#include <algorithm>
 #include <iostream>
 #include <queue>
-#include <vector>
 
 #define u8 unsigned char
 #define hd short int
@@ -52,78 +52,100 @@
 
 using namespace std;
 
-#define start_char 'A'
-#define end_char 'B'
-#define visited '*'
-#define wall '#'
+const int MAX = 1005;
 
-void bfs(const pi start, vector<vector<char>> &mtx) {
+int n, m;
+char mtx[MAX][MAX];
+char visited[MAX][MAX];
+pi parent[MAX][MAX];
 
-  // create an array to store the traversal
-  vector<pi> res;
+pi start_pos, end_pos = {-1, -1};
 
-  // Create a queue for BFS
-  queue<pi> q;
+#define START_SYMBOL 'A'
+#define END_SYMBOL 'B'
+#define WALL '#'
 
-  q.push(start);
+bool flag = false;
 
-  // Iterate over the queue
-  while (!q.empty()) {
-
-    auto [x, y] = q.front();
-    q.pop();
-
-    if (x < 0 || y < 0 || x == mtx.size() || y == mtx[0].size() ||
-        mtx[x][y] == wall || mtx[x][y] == visited)
-      continue;
-
-    res.push_back({x, y});
-    if (mtx[x][y] == end_char)
-      break;
-    mtx[x][y] = visited;
-
-    q.push({x + 1, y});
-    q.push({x, y + 1});
-    q.push({x - 1, y});
-    q.push({x, y - 1});
-  }
-  for (const auto a : res)
-    DUO(a.first, a.second);
-
-  auto prev = res[0];
-  for (ll i = 1; i < res.size(); i++) {
-    const auto [x, y] = res[i];
-    const auto [px, py] = prev;
-    if (x < px)
-      cout << 'U';
-    if (y < py)
-      cout << 'L';
-    if (px < x)
-      cout << 'D';
-    if (py < y)
-      cout << 'R';
-    prev = {x, y};
-  }
-  cout << endl;
+bool valid(int x, int y) {
+  return !(x < 0 || y < 0 || x == n || y == m || mtx[x][y] == WALL);
 }
 
+string traceback() {
+  string res;
+
+  auto prev = end_pos;
+  while (prev != start_pos) {
+    const auto [px, py] = prev;
+    const auto [x, y] = parent[px][py];
+    // DUO(x, y);
+    // DUO(px, py);
+    if (px == x + 1 && py == y)
+      res.push_back('D');
+    if (px == x - 1 && py == y)
+      res.push_back('U');
+    if (px == x && py == y + 1)
+      res.push_back('R');
+    if (px == x && py == y - 1)
+      res.push_back('L');
+    prev = {x, y};
+  }
+
+  return res;
+}
+
+void bfs() {
+  queue<pi> q;
+  q.push(start_pos);
+  visited[start_pos.first][start_pos.second] = true;
+  while (!q.empty()) {
+    const auto curr = q.front();
+    q.pop();
+    const auto [x, y] = curr;
+    if (curr == end_pos) {
+      flag = true;
+      return;
+    }
+    const pi options[] = {{x + 1, y}, {x - 1, y}, {x, y + 1}, {x, y - 1}};
+    for (const auto [nx, ny] : options) {
+      if (valid(nx, ny) && !visited[nx][ny]) {
+        visited[nx][ny] = true;
+        parent[nx][ny] = {x, y};
+        q.push({nx, ny});
+      }
+    }
+  }
+}
 int main(int argc, char *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
   cout.tie(NULL);
-  int n, m;
   cin >> n >> m;
-  vector<vector<char>> mtx(n, vector<char>(m));
-  pi start;
+
   for (int i = 0; i < n; i++) {
     for (int j = 0; j < m; j++) {
-      cin >> mtx[i][j];
-      if (mtx[i][j] == start_char)
-        start = {i, j};
+      char aux;
+      cin >> aux;
+      mtx[i][j] = aux;
+      if (aux == START_SYMBOL)
+        start_pos = {i, j};
+      if (aux == END_SYMBOL)
+        end_pos = {i, j};
     }
   }
 
-  bfs(start, mtx);
+  bfs();
+  if (!flag) {
+    cout << "NO" << endl;
+    return 0;
+  }
+  cout << "YES" << endl;
+
+  string res = traceback();
+  reverse(res.begin(), res.end());
+
+  cout << res.length() << endl;
+  cout << res << endl;
 
   return 0;
 }

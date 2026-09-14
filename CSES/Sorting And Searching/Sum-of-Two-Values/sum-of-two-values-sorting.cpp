@@ -1,3 +1,5 @@
+// NOTE: This one is faster
+
 #include <algorithm>
 #include <cmath>
 #include <iostream>

@@ -1,3 +1,5 @@
+// https://codeforces.com/gym/106039/problem/K
+
 #include <iostream>
 #include <set>
 #include <vector>

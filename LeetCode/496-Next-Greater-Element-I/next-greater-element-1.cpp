@@ -1,4 +1,3 @@
-#include <algorithm>
 #include <cmath>
 #include <iostream>
 #include <map>
@@ -40,37 +39,29 @@ template <typename T> ostream &operator<<(ostream &os, const vector<T> &v) {
 #define dbg(x) cerr << #x << " = " << (x) << endl
 #define all(x) (x).begin(), (x).end()
 
-int solution(int num, const vi &choices, const vi &results);
-
-void solve() {
-  ll n, m;
-  cin >> n >> m;
-  vll v(n);
-  stack<ll> st;
-  map<ll, ll> mp;
-  cin >> v;
-  for (ll i = 0; i < m; i++) {
-    ll aux;
-    cin >> aux;
-    mp[aux] = -1;
-    while (!st.empty() && aux > st.top()) {
-      const auto top = st.top();
-      st.pop();
-      mp[top] = aux;
+class Solution {
+public:
+  vector<int> nextGreaterElement(vector<int> &nums1, vector<int> &nums2) {
+    ll n, m;
+    cin >> n >> m;
+    vll v(n);
+    stack<ll> st;
+    map<ll, ll> mp;
+    cin >> v;
+    for (ll i = 0; i < m; i++) {
+      ll aux;
+      cin >> aux;
+      mp[aux] = -1;
+      while (!st.empty() && aux > st.top()) {
+        const auto top = st.top();
+        st.pop();
+        mp[top] = aux;
+      }
+      st.push(aux);
     }
-    st.push(aux);
+    vector<int> res;
+    for (const auto &pos : v)
+      res.push_back(mp[pos]);
+    return res;
   }
-  for (const auto &pos : v)
-    cout << mp[pos] << endl;
-}
-
-int main() {
-  ios_base::sync_with_stdio(false);
-  cin.tie(NULL);
-
-  int t = 1;
-  while (t--) {
-    solve();
-  }
-  return 0;
-}
+};

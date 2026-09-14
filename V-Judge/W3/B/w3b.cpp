@@ -1,3 +1,5 @@
+// https://codeforces.com/contest/580/problem/A
+
 #include <iostream>
 #include <vector>
 
@@ -61,7 +63,7 @@ int main(int argc, char *argv[]) {
   INPUT_VEC(v);
   ll last = -1, count = 0, best = 0;
   for (const auto &pos : v) {
-    if (pos <= last) {
+    if (pos < last) {
       best = max(best, count);
       count = 1;
 

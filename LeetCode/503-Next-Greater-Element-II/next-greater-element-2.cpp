@@ -38,38 +38,22 @@ template <typename T> ostream &operator<<(ostream &os, const vector<T> &v) {
 #define dbg(x) cerr << #x << " = " << (x) << endl
 #define all(x) (x).begin(), (x).end()
 
-int solution(int num, const vi &choices, const vi &results);
-
-void solve() {
-  ll n;
-  cin >> n;
-  vll v(n);
-  cin >> v;
-  stack<ll> st;
-  vll res(n, -1);
-  for (ll i = 0; i < n << 1; i++) {
-    ll idx = i % n;
-    while (!st.empty() && v[idx] > v[st.top()]) {
-      const auto top = st.top();
-      st.pop();
-      res[top] = v[idx];
+class Solution {
+public:
+  vector<int> nextGreaterElements(vector<int> &v) {
+    stack<ll> st;
+    ll n = v.size();
+    vector<int> res(v.size(), -1);
+    for (ll i = 0; i < n << 1; i++) {
+      ll idx = i % n;
+      while (!st.empty() && v[idx] > v[st.top()]) {
+        const auto top = st.top();
+        st.pop();
+        res[top] = v[idx];
+      }
+      if (i < n)
+        st.push(i);
     }
-    if (i < n)
-      st.push(i);
+    return res;
   }
-  for (ll i = 0; i < n; i++) {
-    cout << res[i] << endl;
-  }
-}
-
-int main() {
-  ios_base::sync_with_stdio(false);
-  cin.tie(NULL);
-
-  int t = 1;
-  // cin >> t;
-  while (t--) {
-    solve();
-  }
-  return 0;
-}
+};

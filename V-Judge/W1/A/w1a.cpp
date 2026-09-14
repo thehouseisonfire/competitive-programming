@@ -1,3 +1,5 @@
+// https://codeforces.com/gym/102219/problem/I
+
 #include <array>
 #include <iostream>
 

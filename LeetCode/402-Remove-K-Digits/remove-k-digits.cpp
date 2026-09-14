@@ -41,39 +41,27 @@ template <typename T> ostream &operator<<(ostream &os, const vector<T> &v) {
 
 int solution(int num, const vi &choices, const vi &results);
 
-void solve() {
-  ll k;
-  string s;
-  cin >> s >> k;
-  stack<char> st;
-  for (const auto &pos : s) {
-    while (!st.empty() && pos < st.top() && k > 0)
-      st.pop(), k--;
-    st.push(pos);
+class Solution {
+public:
+  string removeKdigits(string s, ll k) {
+    stack<char> st;
+    for (const auto &pos : s) {
+      while (!st.empty() && pos < st.top() && k > 0)
+        st.pop(), k--;
+      st.push(pos);
+    }
+    while (k-- && !st.empty())
+      st.pop();
+
+    string res;
+    while (!st.empty())
+      res.push_back(st.top()), st.pop();
+    while (res.size() && res[res.size() - 1] == '0')
+      res.pop_back();
+    reverse(all(res));
+    if (!res.size())
+      res.push_back('0');
+
+    return res.empty() ? "0" : res;
   }
-  while (k-- && !st.empty())
-    st.pop();
-
-  string res;
-  while (!st.empty())
-    res.push_back(st.top()), st.pop();
-  while (res.size() && res[res.size() - 1] == '0')
-    res.pop_back();
-  reverse(all(res));
-  if (!res.size())
-    res.push_back('0');
-
-  cout << res << endl;
-}
-
-int main() {
-  ios_base::sync_with_stdio(false);
-  cin.tie(NULL);
-
-  int t = 1;
-  // cin >> t;
-  while (t--) {
-    solve();
-  }
-  return 0;
-}
+};

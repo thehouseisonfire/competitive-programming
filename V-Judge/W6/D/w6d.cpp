@@ -1,3 +1,5 @@
+// https://codeforces.com/gym/106073/problem/M
+
 #include <algorithm>
 #include <iostream>
 #include <vector>

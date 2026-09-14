@@ -1,6 +1,6 @@
+#include <algorithm>
 #include <cmath>
 #include <iostream>
-#include <unordered_map>
 #include <vector>
 using namespace std;
 
@@ -43,25 +43,25 @@ int solution(int num, const vi &choices, const vi &results);
 void solve() {
   ll n, m;
   cin >> n >> m;
-  vll v(n);
-  cin >> v;
-
-  for (ll k = 0; k < n; k++) {
-    ll target = m - v[k];
-    unordered_map<ll, ll> mp;
-    mp.reserve(n * 2);
-    mp.max_load_factor(0.7);
-
-    for (ll i = 0; i < n; i++) {
-      if (i == k)
-        continue;
-
-      ll need = target - v[i];
-      if (mp.count(need)) {
-        cout << k + 1 << " " << i + 1 << " " << mp[need] << "\n";
+  vector<pair<ll, ll>> v(n);
+  for (ll i = 0; i < n; i++) {
+    cin >> v[i].first;
+    v[i].second = i + 1;
+  }
+  sort(all(v));
+  for (ll k = 0; k < n - 1; k++) {
+    ll target = m - v[k].first;
+    ll l = k + 1, r = n - 1;
+    while (l < r) {
+      ll sum = v[l].first + v[r].first;
+      if (sum == target) {
+        cout << v[k].second << " " << v[l].second << " " << v[r].second << endl;
         return;
       }
-      mp[v[i]] = i + 1;
+      if (sum < target)
+        l++;
+      else
+        r--;
     }
   }
   cout << "IMPOSSIBLE" << endl;
