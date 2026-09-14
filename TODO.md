@@ -18,7 +18,3 @@ Distinct Values Sum - https://cses.fi/problemset/task/3150
 Projects - https://cses.fi/problemset/task/1140
 Finding Periods - https://cses.fi/problemset/task/1733
 Maximum Building II - https://cses.fi/problemset/task/1148
-
-Extra:
-
-https://codeforces.com/problemset/problem/2021/B
