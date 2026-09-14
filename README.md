@@ -36,17 +36,24 @@ The judges currently covered:
 
 | Judge | Folder | Contest folder | Problem folder |
 |---|---|---|---|
-| OBI (Olímpíada Brasileira de Informática) | `OBI/` | year & phase (e.g. `2015-F1`) | problem name (e.g. `Metro`) |
+| OBI (Olímpiada Brasileira de Informática) | `OBI/` | year & phase (e.g. `2015-F1`) | problem name (e.g. `Metro`) |
 | Beecrowd | `Beecrowd/` | — | problem number (e.g. `1001`) |
 | Codeforces | `Codeforces/` | round id (e.g. `158`) | letter + name (e.g. `A-Next-Round`) |
 | Atcoder | `Atcoder/` | contest id (e.g. `DP`) | problem name (e.g. `Coins`) |
 | CSES | `CSES/` | — | problem name (e.g. `Book-Shop`) |
 | CodeChef | `CodeChef/` | — | problem code (e.g. `TALCA`) |
-| Gym | `Gym/` | contest id (e.g. `101908`) | problem letter (e.g. `B`) |
 | V-Judge | `V-Judge/` | week (e.g. `W1`) | problem letter (e.g. `A`) |
 | LeetCode | `LeetCode/` | — | number + name (e.g. `496-Next-Greater-Element-I`) |
 | SPOJ | `SPOJ/` | — | problem code (e.g. `FARIDA`) |
 | Misc | `Misc/` | — | problem name (e.g. `Karamell`) |
+
+### Special folders
+
+| Folder | Description |
+|---|---|
+| `2026-regionals/` | Regional contest problems from 2026 |
+| `MOJ-Esquenta-2026/` | MOJ Esquenta 2026 contest problems |
+| `Templates/` | Template documentation and code snippets |
 
 ## Running the solutions
 

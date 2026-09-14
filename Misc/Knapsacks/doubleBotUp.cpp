@@ -1,5 +1,3 @@
-
-// C++ implementation of the tabulation approach
 #include <bits/stdc++.h>
 #define maxN 31
 #define maxW 31

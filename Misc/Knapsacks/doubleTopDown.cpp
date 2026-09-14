@@ -53,7 +53,3 @@ int main() {
   cout << maxWeight(arr, n, w1, w2, 0);
   return 0;
 }
-
-  
-
-  
