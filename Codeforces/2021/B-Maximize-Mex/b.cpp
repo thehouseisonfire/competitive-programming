@@ -1,7 +1,5 @@
-#include <algorithm>
 #include <cmath>
 #include <iostream>
-#include <map>
 #include <vector>
 using namespace std;
 
@@ -44,43 +42,23 @@ int solution(int num, const vi &choices, const vi &results);
 void solve() {
   ll n, x;
   cin >> n >> x;
-  vll v(n);
-  cin >> v;
-  sort(all(v));
-  vll mp(x);
-  for (const auto &pos : v) {
-    if (mp[pos % x] * x + (pos % x) < pos) {
-      dbg("se fudeu 0");
-      dbg(pos);
-      dbg(mp[pos % x] * x + (pos % x));
-      cout << pos % x + (mp[pos % x] * x) << endl;
+  vll v(n + 1);
+  for (ll i = 0; i < n; i++) {
+    ll aux;
+    cin >> aux;
+    if (aux > n)
+      continue;
+    v[aux]++;
+  }
+  for (ll i = 0; i <= n; i++) {
+    if (!v[i]) {
+      cout << i << endl;
       return;
-    }
-    mp[pos % x]++;
-  }
-  pll small = {INF, INF};
-  ll count = 0;
-  for (ll i = 0; i < x; i++) {
-    if (small.second > i)
-      small = {i, mp[i]};
-    if (count < x) {
-      if (i != count) {
-        dbg("se fudeu");
-        cout << count << endl;
-        return;
-      }
-      count++;
+    } else {
+      if (i + x <= n)
+        v[i + x] += v[i] - 1;
     }
   }
-
-  if (x != count) {
-    dbg("se fudeu 2");
-    cout << count << endl;
-    return;
-  }
-  dbg("se fudeu nao");
-  dbg(small);
-  cout << small.first + small.second * x << endl;
 }
 
 int main() {
