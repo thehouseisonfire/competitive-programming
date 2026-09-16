@@ -1,8 +1,6 @@
 #include <algorithm>
 #include <iostream>
 #include <map>
-#include <set>
-#include <unordered_map>
 #include <vector>
 #define u8 unsigned char
 #define u16 short unsigned
@@ -24,18 +22,6 @@ struct Country {
   u16 bronzes = 0;
 };
 
-// struct comp {
-//   bool operator()(const pair<string, Country> &l,
-//                   const pair<string, Country> &r) const {
-//     return l.second.golds != r.second.golds ? l.second.golds > r.second.golds
-//            : l.second.silvers != r.second.silvers
-//                ? l.second.silvers > r.second.silvers
-//            : l.second.bronzes != r.second.bronzes
-//                ? l.second.bronzes > r.second.bronzes
-//                : l.first.compare(r.first) < 0;
-//   }
-// };
-
 bool cmp(const pair<string, Country> &l, const pair<string, Country> &r) {
   return l.second.golds != r.second.golds ? l.second.golds > r.second.golds
          : l.second.silvers != r.second.silvers
@@ -43,14 +29,6 @@ bool cmp(const pair<string, Country> &l, const pair<string, Country> &r) {
          : l.second.bronzes != r.second.bronzes
              ? l.second.bronzes > r.second.bronzes
              : l.first.compare(r.first) < 0;
-  // if (l.second.golds != r.second.golds)
-  //   return l.second.golds > r.second.golds;
-  // else if (l.second.silvers != r.second.silvers)
-  //   return l.second.silvers > r.second.silvers;
-  // else if (l.second.bronzes != r.second.bronzes)
-  //   return l.second.bronzes > r.second.bronzes;
-  // else
-  //   return l.first.compare(r.first);
 }
 
 void solution(map<string, Country> &map) {
@@ -59,26 +37,24 @@ void solution(map<string, Country> &map) {
   countries.reserve(63);
   for (auto itr = map.begin(); itr != map.end(); ++itr)
     countries.push_back(*itr);
-  // for (auto cnt : countries) {
-  //   cout << cnt.first << ": " << cnt.second.golds << " " <<
-  //   cnt.second.silvers
-  //        << " " << cnt.second.bronzes << endl;
-  // }
   cout << "Quadro de Medalhas\n";
   sort(countries.begin(), countries.end(), cmp);
   for (auto cnt : countries) {
-    cout << cnt.first << ": " << cnt.second.golds << " " << cnt.second.silvers
+    cout << cnt.first << " " << cnt.second.golds << " " << cnt.second.silvers
          << " " << cnt.second.bronzes << endl;
   }
 }
+
 int main() {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
-  string ignore;
+  string event;
   map<string, Country> map;
-  while (cin >> ignore) {
+  while (getline(cin, event)) {
     string gold, silver, bronze;
-    cin >> gold >> silver >> bronze;
+    getline(cin, gold);
+    getline(cin, silver);
+    getline(cin, bronze);
     map[gold].golds++;
     map[silver].silvers++;
     map[bronze].bronzes++;

@@ -48,35 +48,32 @@
 
 using namespace std;
 
-// cin >> n;
-// cin.ignore();
-// getline(cin, str);
-// str.clear();
+int maxn = 2 * 1e5 + 100;
+int n, c;
+vector<int> v(maxn);
+vector<vector<int>> dp(maxn, vector<int>(2, -INF));
+
+int solution(int d, bool can_buy) {
+
+  dp[n][0] = dp[n][1] = 0;
+
+  for (int d = n - 1; d >= 0; d--) {
+    dp[d][1] = max(dp[d + 1][1], dp[d + 1][0] - c - v[d]);
+    dp[d][0] = max(dp[d + 1][0], dp[d + 1][1] + v[d]);
+  }
+  return dp[0][1];
+}
 
 int main(int argc, char *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
   cout.tie(NULL);
 
-  int n, c, profit = 0;
   cin >> n >> c;
-  if (n > 2)
-    return 0;
-  vector<int> v(n);
-  INPUT_VEC(v);
-  for (int i = 0, j = 1; j < v.size() - 1; j++) {
-    if (v[j - 1] > v[j]) {
-      const bool is_profitable = v[j - 1] - v[i] > c;
-      const bool steep_drop = v[j - 1] - v[j] > c;
-      if (is_profitable && steep_drop) {
-        profit += v[j - 1] - v[i] - c;
-        i = j;
-      } else if (is_profitable && !steep_drop) {
-
-      } else if (!is_profitable && steep_drop) {
-      }
-    }
+  for (int i = 0; i < n; i++) {
+    cin >> v[i];
   }
+  cout << solution(0, true) << endl;
 
   return 0;
 }

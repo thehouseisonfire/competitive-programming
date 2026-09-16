@@ -1,5 +1,7 @@
 #include <cmath>
 #include <iostream>
+#include <set>
+#include <string>
 #include <vector>
 using namespace std;
 
@@ -37,18 +39,47 @@ template <typename T> ostream &operator<<(ostream &os, const vector<T> &v) {
 #define dbg(x) cerr << #x << " = " << (x) << endl
 #define all(x) (x).begin(), (x).end()
 
-using namespace std;
+int solution(int num, const vi &choices, const vi &results);
+
+void solve() {
+  ll n;
+  cin >> n;
+  // dbg(n);
+  string line;
+  getline(cin, line);
+  while (n--) {
+    set<string> items;
+    getline(cin, line);
+    // dbg(line);
+    string curr;
+    for (const auto c : line) {
+      if (c == ' ') {
+        items.insert(curr);
+        curr = "";
+      } else
+        curr.push_back(c);
+    }
+    if (!curr.empty())
+      items.insert(curr);
+    bool flag = true;
+    for (const auto &item : items) {
+      if (!flag)
+        cout << ' ';
+      cout << item;
+      flag = false;
+    }
+    cout << endl;
+  }
+}
 
 int main() {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
-  int n, count = 0;
-  cin >> n;
-  int p = 1;
-  while (p != 1 || count == 0) {
-    p = p <= n / 2 ? p * 2 : p * 2 - n - 1;
-    count++;
+
+  int t = 1;
+  // cin >> t;
+  while (t--) {
+    solve();
   }
-  cout << count << endl;
   return 0;
 }

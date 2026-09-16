@@ -33,8 +33,8 @@ int main() {
   cin.tie(NULL);
   cout.flush();
   cout.tie(NULL);
-  vector<int> v = {1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024};
-  vector<int> r(2048, -1);
+  vector<int> v = {1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048};
+  vector<int> r(2049, -1);
   r[0] = 0;
   r[1] = 1;
   r[2] = 1;

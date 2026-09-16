@@ -82,7 +82,7 @@ int main(int argc, char *argv[]) {
       int aux;
       cin >> aux;
       aux %= k;
-      sum += v[aux];
+      sum += v[(k - aux) % k];
     }
     cout << sum << endl;
   }

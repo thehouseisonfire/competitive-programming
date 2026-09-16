@@ -1,110 +1,108 @@
+#include <cmath>
 #include <iostream>
-#include <limits.h>
+#include <queue>
 #include <vector>
-
-#define u8 unsigned char
-#define i16 short int
-#define u16 short unsigned
-#define u32 unsigned
-#define pi pair<int, int>
-
-#define INF 2147483647
-#define HINF INF >> 1
-#define MOD 1000000007
-#define ASCII_NUMBER_OFFSET '0'
-#define ASCII_UPPERCASE_OFFSET 'A'
-#define ASCII_LOWERCASE_OFFSET 'a'
-// #define ASCII_NUMBER_OFFSET 48
-// #define ASCII_UPPERCASE_OFFSET 65
-// #define ASCII_LOWERCASE_OFFSET 97
-
-#define DBG(x) cout << "[" << #x << "]: " << x << endl
-#define F(x) std::fixed << std::setprecision(1) << (x)
-#define PI(x) cout << x.first << " " << x.second << endl
-#define DUO(x, y) cout << x << " " << y << endl
-
-#define PRINT_VEC(v)                                                           \
-  for (const auto &pos : v) {                                                  \
-    cout << pos << " ";                                                        \
-  }                                                                            \
-  cout << endl;
-
-#define PRINT_DUO_VEC(v)                                                       \
-  for (const auto &pos : v) {                                                  \
-    cout << pos.first << " " << pos.second << endl;                            \
-  }                                                                            \
-  cout << endl;
-
-#define INPUT_VEC(v)                                                           \
-  for (auto &pos : v) {                                                        \
-    cin >> pos;                                                                \
-  }
-
-#define INPUT_DUO_VEC(v)                                                       \
-  for (auto &pos : v) {                                                        \
-    cin >> pos.first >> pos.second;                                            \
-  }
-
 using namespace std;
 
-int minDistance(vector<int> &dist, bool sptSet[]) {
+using ll = long long;
+using ld = long double;
+using pii = pair<int, int>;
+using pll = pair<ll, ll>;
+using vi = vector<int>;
+using vll = vector<ll>;
 
-  int min = INT_MAX, min_index;
+const int MOD = 1e9 + 7;
+const ll INF = 1e18;
+const ld PI = acos(-1.0);
 
-  for (int v = 0; v < dist.size(); v++)
-    if (sptSet[v] == false && dist[v] <= min)
-      min = dist[v], min_index = v;
-
-  return min_index;
+template <typename T1, typename T2>
+istream &operator>>(istream &is, pair<T1, T2> &p) {
+  return is >> p.first >> p.second;
+}
+template <typename T1, typename T2>
+ostream &operator<<(ostream &os, const pair<T1, T2> &p) {
+  return os << p.first << " " << p.second;
 }
 
-void dijkstra(vector<vector<int>> &graph, vector<int> &dist, int src) {
-
-  bool sptSet[dist.size()];
-  for (int i = 0; i < dist.size(); i++)
-    dist[i] = INT_MAX, sptSet[i] = false;
-  dist[src] = 0;
-
-  for (int count = 0; count < dist.size() - 1; count++) {
-    int u = minDistance(dist, sptSet);
-    sptSet[u] = true;
-    for (int v = 0; v < dist.size(); v++)
-      if (!sptSet[v] && graph[u][v] && dist[u] != INT_MAX &&
-          dist[u] + graph[u][v] < dist[v])
-        dist[v] = dist[u] + graph[u][v];
-  }
+template <typename T> istream &operator>>(istream &is, vector<T> &v) {
+  for (auto &x : v)
+    is >> x;
+  return is;
 }
-// k = 2
-// c = 1
-int main(int argc, char *argv[]) {
-  ios_base::sync_with_stdio(false);
-  cin.tie(NULL);
-  int n, m, c, k;
-  while (cin >> n >> m >> c >> k) {
-    if (!n && !m && !c && !k)
-      return 0;
-    vector<vector<int>> mtx(n, vector<int>(n, 0));
-    int v, u, p;
-    while (m--) {
-      cin >> v >> u >> p;
-      if (u < v)
-        swap(u, v);
-      if (u < c && v + 1 == u) {
-        mtx[v][u] = p;
-      } else if (v < c && c - 1 < u) {
-        mtx[u][v] = p;
-      } else if (v > c - 1 && u > c - 1) {
-        mtx[v][u] = p;
-        mtx[u][v] = p;
+template <typename T> ostream &operator<<(ostream &os, const vector<T> &v) {
+  for (int i = 0; i < v.size(); ++i)
+    os << (i > 0 ? " " : "") << v[i];
+  return os;
+}
+
+#define dbg(x) cerr << #x << " = " << (x) << endl
+#define all(x) (x).begin(), (x).end()
+
+vector<vector<pll>> adj;
+
+vector<ll> dist;
+
+void dijkstra(ll s, vector<vector<pll>> adj, vector<ll> &d) {
+  priority_queue<pll, vector<pll>, greater<pll>> pq;
+
+  d[s] = 0;
+  pq.push({0, s});
+
+  while (!pq.empty()) {
+    auto [p, v] = pq.top();
+    pq.pop();
+
+    if (p != d[v])
+      continue;
+
+    for (const auto [to, w] : adj[v]) {
+      if (d[v] + w < d[to]) {
+        d[to] = d[v] + w;
+        pq.push({d[to], to});
       }
     }
-    vector<int> dist(n);
-    dijkstra(mtx, dist, k);
-    for (const auto &v : mtx) {
-      PRINT_VEC(v)
+  }
+}
+
+void solve() {
+  ll n, m, c, start;
+
+  while (cin >> n >> m >> c >> start) {
+    if (!n && !m && !c && !start)
+      break;
+    adj.assign(n, {});
+    dist.assign(n, INF);
+    for (ll i = 0; i < m; i++) {
+      ll a, b, w;
+      cin >> a >> b >> w;
+      if (a >= c && b >= c) {
+        adj[a].push_back({b, w});
+        adj[b].push_back({a, w});
+      } else if (a >= c && b < c) {
+        adj[a].push_back({b, w});
+      } else if (b >= c && a < c) {
+        adj[b].push_back({a, w});
+      } else if (a < c && b < c) {
+        if (a + 1 == b)
+          adj[a].push_back({b, w});
+        else if (b + 1 == a)
+          adj[b].push_back({a, w});
+      }
     }
-    cout << endl;
-    PRINT_VEC(dist)
+    dijkstra(start, adj, dist);
+
     cout << dist[c - 1] << endl;
   }
+}
+
+int main() {
+  ios_base::sync_with_stdio(false);
+  cin.tie(NULL);
+
+  int t = 1;
+  // cin >> t;
+  while (t--) {
+    solve();
+  }
+  return 0;
 }

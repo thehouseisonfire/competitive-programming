@@ -53,41 +53,32 @@
 
 using namespace std;
 
-int solve(const vector<int> &v, const int target, const ll minimum) {
+int solve(const vector<int> &v, const int target, const ll needed) {
 
   ll count = 0;
-  ll lol = 0;
-  ll j = v.size() - 1;
+  ll used = 0;
   ll i = 0;
+  ll j = v.size() - 1;
 
-  while (i < j) {
-    if (v[j] > target) {
-      j--;
-      continue;
-    }
-    if (v[j] == target) {
-      j--;
-      count++;
-      lol++;
-      continue;
-    }
+  while (j >= 0 && v[j] > target)
+    j--;
 
-    ll res = v[i] + v[j];
-
-    if (res < target) {
-      i++;
-    } else if (res == target) {
-      count += 2;
-      lol++;
-      i++;
-      j--;
-    } else {
-      j--;
-    }
+  while (j >= 0 && v[j] == target && count < needed) {
+    j--;
+    count++;
+    used++;
   }
-  if (lol < minimum)
-    count = INT_MAX;
-  return count;
+  while (i < j && count < needed) {
+    ll curr = v[i] + v[j];
+    if (curr == target)
+      count++, used += 2, i++, j--;
+    else if (curr < target)
+      i++;
+    else
+      j--;
+  }
+
+  return count == needed ? used : INT_MAX;
 }
 
 int main(int argc, char *argv[]) {
@@ -99,22 +90,20 @@ int main(int argc, char *argv[]) {
     if (n == 0 && m == 0)
       break;
     cin >> q;
-    ll nn = n;
-    ll mm = m;
-    n *= 100;
-    m *= 100;
     int k;
     cin >> k;
 
     vector<int> v(k);
     INPUT_VEC(v);
-    for (auto &pos : v)
-      pos *= q;
 
     sort(v.begin(), v.end());
 
-    int count = solve(v, n, mm);
-    int count2 = min(count, solve(v, m, nn));
+    int count = INT_MAX, count2 = INT_MAX;
+
+    if ((m * 100) % q == 0)
+      count = solve(v, n, (m * 100) / q);
+    if ((n * 100) % q == 0)
+      count2 = solve(v, m, (n * 100) / q);
 
     const ll res = min(count, count2);
     if (res == INT_MAX) {
