@@ -37,18 +37,41 @@ template <typename T> ostream &operator<<(ostream &os, const vector<T> &v) {
 #define dbg(x) cerr << #x << " = " << (x) << endl
 #define all(x) (x).begin(), (x).end()
 
+int LOG = 31;
+
+int kth_anscestor(vector<vector<ll>> &up, ll v, ll k) {
+  for (ll i = 0; i < LOG; i++) {
+    if (1 << i & k) {
+      v = up[v][i];
+      if (v == -1)
+        return -1;
+    }
+  }
+  return v;
+}
+
 void solve() {
-  ll n, k, p;
-  cin >> n >> k >> p;
-  bool side = (p / k) % 2;
-  ll gap = p % k;
-  if (side) { // voltando
-    if (n > k)
-      cout << max(k - gap, 0ll) << endl;
-    else
-      cout << max(n - gap, 0ll) << endl;
-  } else {
-    cout << max(n - gap, 0ll) << endl;
+  ll n, q;
+  cin >> n >> q;
+
+  vector<vll> up(n, vll(LOG, -1));
+  for (ll v = 0; v < n; v++) {
+    cin >> up[v][0];
+    up[v][0]--;
+  }
+
+  for (ll j = 1; j < LOG; j++) {
+    for (ll v = 0; v < n; v++) {
+      ll mid = up[v][j - 1];
+      if (mid != -1)
+        up[v][j] = up[up[v][j - 1]][j - 1];
+    }
+  }
+  while (q--) {
+    int a, k;
+    cin >> a >> k;
+    a--;
+    cout << kth_anscestor(up, a, k) + 1 << endl;
   }
 }
 
@@ -57,7 +80,7 @@ int main() {
   cin.tie(NULL);
 
   int t = 1;
-  cin >> t;
+  // cin >> t;
   while (t--) {
     solve();
   }

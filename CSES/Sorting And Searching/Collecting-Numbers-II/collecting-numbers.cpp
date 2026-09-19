@@ -1,5 +1,7 @@
 #include <cmath>
 #include <iostream>
+#include <set>
+#include <unordered_map>
 #include <vector>
 using namespace std;
 
@@ -37,29 +39,44 @@ template <typename T> ostream &operator<<(ostream &os, const vector<T> &v) {
 #define dbg(x) cerr << #x << " = " << (x) << endl
 #define all(x) (x).begin(), (x).end()
 
-void solve() {
-  ll n, k, p;
-  cin >> n >> k >> p;
-  bool side = (p / k) % 2;
-  ll gap = p % k;
-  if (side) { // voltando
-    if (n > k)
-      cout << max(k - gap, 0ll) << endl;
-    else
-      cout << max(n - gap, 0ll) << endl;
-  } else {
-    cout << max(n - gap, 0ll) << endl;
-  }
-}
-
-int main() {
+int main(int argc, char *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
-
-  int t = 1;
-  cin >> t;
-  while (t--) {
-    solve();
+  cout.tie(NULL);
+  int n, m;
+  cin >> n >> m;
+  vector<int> v(n);
+  unordered_map<int, int> map;
+  for (int i = 0; i < n; i++) {
+    int aux;
+    cin >> aux;
+    map[aux] = i;
+    v[i] = aux;
   }
+  int count = 1;
+  for (int i = 2; i <= n; i++) {
+    count += (map[i - 1] > map[i]);
+  }
+  // cout << count << endl;
+  while (m--) {
+    int a, b;
+    cin >> a >> b;
+    int ra = v[a - 1];
+    int rb = v[b - 1];
+
+    set<int> dedup = {ra - 1, ra, rb - 1, rb};
+    for (const auto &pos : dedup)
+      if (pos > 0 && pos < n)
+        count -= (map[pos] > map[pos + 1]);
+
+    swap(map[ra], map[rb]);
+    swap(v[a - 1], v[b - 1]);
+
+    for (const auto &pos : dedup)
+      if (pos > 0 && pos < n)
+        count += (map[pos] > map[pos + 1]);
+    cout << count << endl;
+  }
+
   return 0;
 }

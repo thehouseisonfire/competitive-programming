@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <cmath>
 #include <iostream>
 #include <vector>
@@ -37,19 +38,29 @@ template <typename T> ostream &operator<<(ostream &os, const vector<T> &v) {
 #define dbg(x) cerr << #x << " = " << (x) << endl
 #define all(x) (x).begin(), (x).end()
 
+int solution(int num, const vi &choices, const vi &results);
+
 void solve() {
-  ll n, k, p;
-  cin >> n >> k >> p;
-  bool side = (p / k) % 2;
-  ll gap = p % k;
-  if (side) { // voltando
-    if (n > k)
-      cout << max(k - gap, 0ll) << endl;
-    else
-      cout << max(n - gap, 0ll) << endl;
-  } else {
-    cout << max(n - gap, 0ll) << endl;
+  ll n, m;
+  cin >> n >> m;
+  vll v(n);
+  cin >> v;
+
+  ll l = 0, r = *min_element(v.begin(), v.end()) * m;
+  while (l < r) {
+    ll t = l + (r - l) / 2;
+    ll count = 0;
+    for (const auto &pos : v)
+      count += t / pos;
+    if (count < 0)
+      count = INF;
+    if (count < m) {
+      l = t + 1;
+    } else
+      r = t;
   }
+
+  cout << l << endl;
 }
 
 int main() {
@@ -57,7 +68,7 @@ int main() {
   cin.tie(NULL);
 
   int t = 1;
-  cin >> t;
+  // cin >> t;
   while (t--) {
     solve();
   }
